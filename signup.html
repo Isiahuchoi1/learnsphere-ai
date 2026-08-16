@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sign Up - LearnSphere AI</title>
+
+    <link rel="stylesheet" href="signup.css">
+</head>
+
+<body>
+
+    <!-- Background -->
+    <div class="background-glow"></div>
+
+
+    <!-- Sign Up Container -->
+    <main class="auth-container">
+
+        <!-- Logo -->
+        <a href="index.html" class="brand">
+
+            <span class="brand-icon">✦</span>
+
+            <span>LearnSphere AI</span>
+
+        </a>
+
+
+        <!-- Card -->
+        <div class="auth-card">
+
+            <div class="auth-header">
+
+                <h1>Create your account</h1>
+
+                <p>
+                    Start your AI-powered learning journey.
+                </p>
+
+            </div>
+
+
+            <!-- Form -->
+            <form id="signupForm">
+
+                <!-- Name -->
+                <div class="form-group">
+
+                    <label for="name">
+                        Full Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="name"
+                        placeholder="Enter your name"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- Email -->
+                <div class="form-group">
+
+                    <label for="email">
+                        Email Address
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="Enter your email"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- Password -->
+                <div class="form-group">
+
+                    <label for="password">
+                        Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="Create a password"
+                        minlength="6"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- Confirm Password -->
+                <div class="form-group">
+
+                    <label for="confirmPassword">
+                        Confirm Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="confirmPassword"
+                        placeholder="Confirm your password"
+                        minlength="6"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- Terms -->
+                <label class="terms">
+
+                    <input
+                        type="checkbox"
+                        id="terms"
+                        required
+                    >
+
+                    <span>
+                        I agree to the Terms of Service and Privacy Policy.
+                    </span>
+
+                </label>
+
+
+                <!-- Button -->
+                <button
+                    type="submit"
+                    class="signup-button"
+                >
+                    Create Account
+                </button>
+
+            </form>
+
+
+            <!-- Divider -->
+            <div class="divider">
+
+                <span>OR</span>
+
+            </div>
+
+
+            <!-- Google Button -->
+            <button
+                type="button"
+                class="google-button"
+                id="googleSignup"
+            >
+
+                <span>G</span>
+
+                Continue with Google
+
+            </button>
+
+
+            <!-- Login -->
+            <p class="login-text">
+
+                Already have an account?
+
+                <a href="login.html">
+                    Log in
+                </a>
+
+            </p>
+
+        </div>
+
+
+        <!-- Back -->
+        <a href="index.html" class="back-home">
+            ← Back to LearnSphere AI
+        </a>
+
+    </main>
+
+
+    <script>
+
+        const signupForm =
+            document.getElementById("signupForm");
+
+        signupForm.addEventListener(
+            "submit",
+            function(event) {
+
+                event.preventDefault();
+
+                const name =
+                    document.getElementById("name").value.trim();
+
+                const email =
+                    document.getElementById("email").value.trim();
+
+                const password =
+                    document.getElementById("password").value;
+
+                const confirmPassword =
+                    document.getElementById("confirmPassword").value;
+
+
+                if (password !== confirmPassword) {
+
+                    alert(
+                        "Passwords do not match."
+                    );
+
+                    return;
+                }
+
+
+                alert(
+                    "Welcome to LearnSphere AI, " +
+                    name +
+                    "!\n\n" +
+                    "Account authentication will be connected in the next stage."
+                );
+
+            }
+        );
+
+
+        document
+            .getElementById("googleSignup")
+            .addEventListener(
+                "click",
+                function() {
+
+                    alert(
+                        "Google Sign-In will be connected in the authentication stage."
+                    );
+
+                }
+            );
+
+    </script>
+
+</body>
+
+              </html>
