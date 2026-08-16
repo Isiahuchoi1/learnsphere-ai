@@ -54,3 +54,22 @@ modeButtons.forEach(function (button) {
     });
 
 });
+// ==========================================
+// Get Started Button
+// ==========================================
+
+const getStartedButton =
+    document.querySelector(".signup-btn");
+
+if (getStartedButton) {
+
+    getStartedButton.addEventListener(
+        "click",
+        function() {
+
+            window.location.href = "signup.html";
+
+        }
+    );
+
+}
