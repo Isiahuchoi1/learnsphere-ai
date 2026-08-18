@@ -187,66 +187,186 @@
     </main>
 
 
-    <script>
+// ==========================================
+    // Email / Password Signup
+    // ==========================================
 
-        const signupForm =
-            document.getElementById("signupForm");
-
-        signupForm.addEventListener(
-            "submit",
-            function(event) {
-
-                event.preventDefault();
-
-                const name =
-                    document.getElementById("name").value.trim();
-
-                const email =
-                    document.getElementById("email").value.trim();
-
-                const password =
-                    document.getElementById("password").value;
-
-                const confirmPassword =
-                    document.getElementById("confirmPassword").value;
+    const signupForm =
+        document.getElementById("signupForm");
 
 
-                if (password !== confirmPassword) {
+    signupForm.addEventListener(
+        "submit",
+        async function(event) {
 
-                    alert(
-                        "Passwords do not match."
+            event.preventDefault();
+
+
+            const name =
+                document
+                    .getElementById("name")
+                    .value
+                    .trim();
+
+
+            const email =
+                document
+                    .getElementById("email")
+                    .value
+                    .trim();
+
+
+            const password =
+                document
+                    .getElementById("password")
+                    .value;
+
+
+            const confirmPassword =
+                document
+                    .getElementById("confirmPassword")
+                    .value;
+
+
+            // Check passwords
+
+            if (password !== confirmPassword) {
+
+                alert(
+                    "Passwords do not match."
+                );
+
+                return;
+
+            }
+
+
+            try {
+
+                const userCredential =
+                    await createUserWithEmailAndPassword(
+                        auth,
+                        email,
+                        password
                     );
 
-                    return;
-                }
+
+                // Save user's name
+
+                await updateProfile(
+                    userCredential.user,
+                    {
+                        displayName: name
+                    }
+                );
 
 
                 alert(
-                    "Welcome to LearnSphere AI, " +
-                    name +
-                    "!\n\n" +
-                    "Account authentication will be connected in the next stage."
+                    "Account created successfully! Welcome to LearnSphere AI."
                 );
 
-            }
-        );
+
+                // Temporary redirect
+
+                window.location.href =
+                    "index.html";
 
 
-        document
-            .getElementById("googleSignup")
-            .addEventListener(
-                "click",
-                function() {
+            } catch (error) {
+
+                console.error(error);
+
+
+                if (
+                    error.code ===
+                    "auth/email-already-in-use"
+                ) {
 
                     alert(
-                        "Google Sign-In will be connected in the authentication stage."
+                        "This email is already registered. Please log in instead."
+                    );
+
+                } else if (
+                    error.code ===
+                    "auth/invalid-email"
+                ) {
+
+                    alert(
+                        "Please enter a valid email address."
+                    );
+
+                } else if (
+                    error.code ===
+                    "auth/weak-password"
+                ) {
+
+                    alert(
+                        "Password is too weak. Please use a stronger password."
+                    );
+
+                } else {
+
+                    alert(
+                        "Signup failed. Please try again."
                     );
 
                 }
-            );
 
-    </script>
+            }
 
-</body>
+        }
+    );
+
+
+    // ==========================================
+    // Google Sign-In
+    // ==========================================
+
+    const googleSignup =
+        document.getElementById("googleSignup");
+
+
+    googleSignup.addEventListener(
+        "click",
+        async function() {
+
+            const provider =
+                new GoogleAuthProvider();
+
+
+            try {
+
+                await signInWithPopup(
+                    auth,
+                    provider
+                );
+
+
+                alert(
+                    "Google Sign-In successful! Welcome to LearnSphere AI."
+                );
+
+
+                window.location.href =
+                    "index.html";
+
+
+            } catch (error) {
+
+                console.error(error);
+
+
+                alert(
+                    "Google Sign-In could not be completed. Please try again."
+                );
+
+            }
+
+        }
+    );
+
+                    </script>
+
+    
 
               </html>
